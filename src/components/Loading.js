@@ -1,6 +1,12 @@
+/***********************************************
+  LOADING COMPONENT IMPORTS
+***********************************************/
 import React from 'react';
 import loading from '../assets/loading.gif';
 
+/***********************************************
+  LOADING COMPONENT
+***********************************************/
 export default function Loading({ productsErrorState }) {
   return (
     <div className="loading">

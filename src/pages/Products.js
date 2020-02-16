@@ -16,6 +16,6 @@ export default function Products() {
 
   return <> { loadingState 
       ? <Loading productsErrorState={productsErrorState} /> 
-      : <ProductList title="Products" products={productsState} /> 
+      : <ProductList title="All Products" products={productsState} /> 
   } </>
 }

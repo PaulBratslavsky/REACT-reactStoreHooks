@@ -1,3 +1,6 @@
+/***********************************************
+  ALERTCOMPONENT IMPORTS
+***********************************************/
 import React from "react";
 
 export default function Alert() {

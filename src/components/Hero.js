@@ -1,5 +1,11 @@
+/***********************************************
+  HERO COMPONENT IMPORTS
+***********************************************/
 import React from 'react';
 
+/***********************************************
+  HeRO COMPONENT IMPORTS
+***********************************************/
 export default function Hero({ children }) {
   return (
     <div className="hero">

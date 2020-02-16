@@ -1,7 +1,13 @@
+/***********************************************
+  HEADER COMPONENT IMPORTS
+***********************************************/
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 
+/***********************************************
+  HEADER COMPONENT IMPORTS
+***********************************************/
 export default function Header() {
   return (
     <header className="header">

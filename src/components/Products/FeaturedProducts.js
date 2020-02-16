@@ -1,5 +1,22 @@
-import React from "react";
+/***********************************************
+  PRODUCTS COMPONENT IMPORTS
+***********************************************/
+import React from 'react';
+import { ProductContext } from '../../context/products';
+import Loading from '../Loading';
+import ProductList from '../Products/ProductList';
+
+/***********************************************
+  PRODUCTS COMPONENT
+***********************************************/
 
 export default function FeaturedProducts() {
-  return <h1>hello from featured products</h1>;
+
+  const { featuredProductsState, loadingState, productsErrorState } = React.useContext(ProductContext);
+
+  return <> { loadingState 
+      ? <Loading productsErrorState={productsErrorState} /> 
+      : <ProductList title="Featured Products" products={featuredProductsState} /> 
+  } </>
 }
+
