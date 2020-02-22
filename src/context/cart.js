@@ -5,7 +5,7 @@ import React from 'react'
 import localCart from '../utils/localCart'
 
 /***************************************************
-  CART CONTEXT INITIALIZED
+  CART CONTEXT CREATED
 ***************************************************/
 export const CartContext = React.createContext()
 
@@ -29,6 +29,23 @@ function CartProvider({ children }) {
     setCartState(cartAfterRemove);
   }
 
+  function increaseAmount(itemId) {
+    console.log(`Increase by 1 item id:${itemId}`)
+  }
+
+  function decreaseAmount(itemId) {
+    console.log(`Decrease by 1 item id:${itemId}`)
+  }
+
+  function addItem(itemId) {
+    console.log(`Add item id:${itemId}`)
+  }
+
+  function clearCart() {
+    console.log(`Clear Cart`)
+    setCartState([]);
+  }
+
   /*************************************************
     CART CONTEXT STATE AND METHODS EXPORTS
   *************************************************/
@@ -40,6 +57,10 @@ function CartProvider({ children }) {
 
   const methods = {
     removeItem,
+    addItem,
+    increaseAmount,
+    decreaseAmount,
+    clearCart,
   }
 
   return (

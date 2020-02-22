@@ -1,23 +1,7 @@
 import React from 'react'
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa'
-import { CartContext } from '../../context/cart';
 
-export default function CartItem({ id, title, price, amount, image }) {
-  const { methods } = React.useContext(CartContext)
-
-  console.log(methods, "FROM SINGLE ITEM")
-
-  function handleRemoveItemButtonClick() {
-    methods.removeItem(id);
-  }
-
-  function handleAddItemButtonClick() {
-    console.log(`Add 1 ${id}`);
-  }
-
-  function handleSubtractItemButtonClick() {
-    console.log(`Subrtact 1 ${id}`);
-  }
+export default function CartItem({ id, title, price, amount, image, methods }) {
 
   return <article className="cart-item">
     <img src={image} alt={title} />
@@ -27,20 +11,20 @@ export default function CartItem({ id, title, price, amount, image }) {
       <button
         type="button"
         className="cart-btn remove-btn"
-        onClick={handleRemoveItemButtonClick}>remove
+        onClick={() => methods.removeItem(id)}>remove
       </button>
     </div>
     <div>
       <button
         type="button"
         className="cart-btn amount-btn"
-        onClick={handleAddItemButtonClick}><FaAngleUp />
+        onClick={() => methods.increaseAmount(id)}><FaAngleUp />
       </button>
       <p className="item-amount">{amount}</p>
       <button
         type="button"
         className="cart-btn amount-btn"
-        onClick={handleSubtractItemButtonClick}><FaAngleDown />
+        onClick={() => methods.decreaseAmount(id)}><FaAngleDown />
       </button>
     </div>
   </article>;
