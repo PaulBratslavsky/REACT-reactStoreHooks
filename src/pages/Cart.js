@@ -4,10 +4,10 @@ import EmptyCart from '../components/Cart/EmptyCart'
 import CartItems from '../components/Cart/CartItems'
 
 export default function Cart() {
-  const { cartState, totalState, cartItemsState } = React.useContext(CartContext)
+  const { state } = React.useContext(CartContext)
 
-  return <> {cartState.length > 0
-    ? <CartItems cartState={cartState} totalState={totalState} />
+  return <> {state.cartState.length > 0
+    ? <CartItems cartState={state.cartState} totalState={state.totalState} />
     : <EmptyCart />
   } </>
 }

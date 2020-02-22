@@ -3,12 +3,12 @@ import { FaAngleUp, FaAngleDown } from 'react-icons/fa'
 import { CartContext } from '../../context/cart';
 
 export default function CartItem({ id, title, price, amount, image }) {
-  const cartContext = React.useContext(CartContext)
+  const { methods } = React.useContext(CartContext)
 
-  console.log(id, title, price, amount, image, "FROM SINGLE ITEM");
+  console.log(methods, "FROM SINGLE ITEM")
 
   function handleRemoveItemButtonClick() {
-    console.log(`Delete item ${id}`);
+    methods.removeItem(id);
   }
 
   function handleAddItemButtonClick() {
