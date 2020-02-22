@@ -16,7 +16,7 @@ export default function Product({ id, title, price, image }) {
       <Link className="btn btn-primary product-link" to={`products/${id}`}>More Info</Link>
     </div>
     <div className="product-footer">
-      <p className="product-title">{title}</p>;
+      <p className="product-title">{title}</p>
       <p className="product-price">{price}</p>
     </div>
   </article>

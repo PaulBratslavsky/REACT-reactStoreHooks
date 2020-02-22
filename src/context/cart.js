@@ -22,19 +22,40 @@ function CartProvider({ children }) {
   const [cartItemsState, setCartItemsState] = React.useState(0)
 
   /*************************************************
+    CART CONTEXT USE EFFECT
+  *************************************************/
+  React.useEffect(() => {
+    // local storage
+
+    const newCartTotalItems = cartState.reduce((total, cartItem) => total += cartItem.amount, 0)
+    setCartItemsState(newCartTotalItems);
+
+    const newCartTotalAmount = cartState.reduce((total, cartItem) => total += (cartItem.price * cartItem.amount), 0)
+    setTotalState(parseFloat(newCartTotalAmount.toFixed(2)))
+
+  }, [cartState])
+
+  /*************************************************
     CART CONTEXT METHODS
   *************************************************/
   function removeItem(itemId) {
-    const cartAfterRemove = cartState.filter(cartItem => cartItem.id !== itemId)
-    setCartState(cartAfterRemove);
+    setCartState([...cartState].filter(cartItem => cartItem.id !== itemId));
   }
 
   function increaseAmount(itemId) {
-    console.log(`Increase by 1 item id:${itemId}`)
+    const tempCart = [...cartState].map(cartItem => cartItem.id === itemId
+      ? { ...cartItem, amount: cartItem.amount + 1 }
+      : { ...cartItem })
+
+    setCartState(tempCart);
   }
 
   function decreaseAmount(itemId) {
-    console.log(`Decrease by 1 item id:${itemId}`)
+    const tempCart = [...cartState].map(cartItem => cartItem.id === itemId
+      ? { ...cartItem, amount: cartItem.amount - 1 }
+      : { ...cartItem })
+
+    setCartState(tempCart);
   }
 
   function addItem(itemId) {
