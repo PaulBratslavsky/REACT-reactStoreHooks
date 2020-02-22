@@ -18,9 +18,7 @@ export default function ProductDetails() {
 
   const { productsState } = React.useContext(ProductContext);
   const selectedProduct = productsState.find((item => item.id === parseInt(id)));
-
-  console.log(selectedProduct, "sgHMMM");
-
+  
   return (
     <div>
       {productsState.length > 0
