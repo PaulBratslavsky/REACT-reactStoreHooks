@@ -1,6 +1,6 @@
 export default [
   {
-    id: 1,
+    id: 8,
     title: "mac vintage computer",
     price: 200.99,
     image:
@@ -8,7 +8,7 @@ export default [
     amount: 3
   },
   {
-    id: 2,
+    id: 5,
     title: "compaq vintage computer",
     price: 40.99,
     image:
@@ -16,7 +16,7 @@ export default [
     amount: 5
   },
   {
-    id: 3,
+    id: 9,
     title: "commodore 64 vintage computer",
     price: 129.99,
     image:

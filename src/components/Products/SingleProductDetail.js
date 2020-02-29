@@ -2,18 +2,19 @@
   PRODUCT COMPONENT IMPORTS
 ***********************************************/
 import React from 'react';
-import { useHistory } from 'react-router-dom'
+import { CartContext } from '../../context/cart'
+
 
 /***********************************************
   PRODUCT COMPONENT IMPORTS
 ***********************************************/
 
-export default function SingleProductDetail({ title, price, image, description, history }) {
+export default function SingleProductDetail({ product, history }) {
+  const { methods } = React.useContext(CartContext)
+  const { title, price, image, description } = product
 
   function handleButtonClick() {
-    console.log('BTN CLICKED');
-    // Pass to cart
-    // Go to cart page
+    methods.addToCart(product)
     history.push("/cart")
   }
 

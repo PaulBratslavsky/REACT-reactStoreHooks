@@ -2,7 +2,9 @@
   CART CONTEXT IMPORTS
 ***************************************************/
 import React from 'react'
-import localCart from '../utils/localCart'
+import LocalCtr from '../utils/local'
+
+const uiID = 'cartContext'
 
 /***************************************************
   CART CONTEXT CREATED
@@ -17,7 +19,7 @@ function CartProvider({ children }) {
   /*************************************************
     CART CONTEXT STATE HOOKS
   *************************************************/
-  const [cartState, setCartState] = React.useState(localCart)
+  const [cartState, setCartState] = React.useState(LocalCtr.get(uiID))
   const [totalState, setTotalState] = React.useState(0)
   const [cartItemsState, setCartItemsState] = React.useState(0)
 
@@ -25,8 +27,8 @@ function CartProvider({ children }) {
     CART CONTEXT USE EFFECT
   *************************************************/
   React.useEffect(() => {
-    // local storage
 
+    LocalCtr.set(uiID, cartState)
     const newCartTotalItems = cartState.reduce((total, cartItem) => total += cartItem.amount, 0)
     setCartItemsState(newCartTotalItems);
 
@@ -41,8 +43,9 @@ function CartProvider({ children }) {
   function removeItem(itemId) {
     setCartState([...cartState].filter(cartItem => cartItem.id !== itemId));
   }
-
+  // Goog examole
   function increaseAmount(itemId) {
+    console.log('function increase amount called', itemId)
     const tempCart = [...cartState].map(cartItem => cartItem.id === itemId
       ? { ...cartItem, amount: cartItem.amount + 1 }
       : { ...cartItem })
@@ -50,21 +53,27 @@ function CartProvider({ children }) {
     setCartState(tempCart);
   }
 
-  function decreaseAmount(itemId) {
+  function decreaseAmount(itemId, amount) {
     const tempCart = [...cartState].map(cartItem => cartItem.id === itemId
       ? { ...cartItem, amount: cartItem.amount - 1 }
       : { ...cartItem })
 
-    setCartState(tempCart);
+    if (amount > 1) {
+      setCartState(tempCart)
+    } else { removeItem(itemId) }
   }
 
-  function addItem(itemId) {
-    console.log(`Add item id:${itemId}`)
+  function addToCart(product) {
+    const { id, image: { url }, title, price } = product;
+    const newItem = { id, image: url, title, price, amount: 1 }
+    const ifItem = [...cartState].find(item => item.id === id)
+    ifItem ? increaseAmount(id) : setCartState([...cartState, newItem])
+
   }
 
   function clearCart() {
     console.log(`Clear Cart`)
-    setCartState([]);
+    setCartState([])
   }
 
   /*************************************************
@@ -78,7 +87,7 @@ function CartProvider({ children }) {
 
   const methods = {
     removeItem,
-    addItem,
+    addToCart,
     increaseAmount,
     decreaseAmount,
     clearCart,

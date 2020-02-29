@@ -24,7 +24,7 @@ export default function CartItem({ id, title, price, amount, image, methods }) {
       <button
         type="button"
         className="cart-btn amount-btn"
-        onClick={() => methods.decreaseAmount(id)}><FaAngleDown />
+        onClick={() => methods.decreaseAmount(id, amount)}><FaAngleDown />
       </button>
     </div>
   </article>;

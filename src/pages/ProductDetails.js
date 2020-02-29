@@ -5,7 +5,6 @@ import React from 'react';
 import { ProductContext } from '../context/products';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-// import { CartContext } from '../context/cart';
 import SingleProductDetail from '../components/Products/SingleProductDetail';
 import Loading from '../components/Loading';
 /***********************************************
@@ -22,7 +21,7 @@ export default function ProductDetails() {
   return (
     <div>
       {productsState.length > 0
-        ? <SingleProductDetail {...selectedProduct} history={history} />
+        ? <SingleProductDetail product={selectedProduct} history={history} />
         : <Loading />
       }
     </div>
